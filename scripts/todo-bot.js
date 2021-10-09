@@ -40,12 +40,24 @@ module.exports = robot => {
 
     // listの実装
     robot.respond(/list/i, msg => {
-        // 配列の全ての要素を与えられた文字列で繋いで1つの文字列にする
-        msg.send(todo.list().join('\n'));
+        const list = todo.list();
+
+        if (list.length === 0) {
+            msg.send('(TODOはありません)');
+        } else {
+            // 配列の全ての要素を与えられた文字列で繋いで1つの文字列にする
+            msg.send(list.join('\n'));
+        }
     });
 
     // donelistの実装
     robot.respond(/donelist/i, msg => {
-        msg.send(todo.donelist().join('\n'));
+        const donelist = todo.donelist();
+        
+        if (donelist.length === 0) {
+            msg.send('(完了したTODOはありません)');
+        } else {
+            msg.send(donelist.join('\n'));
+        }
     });
 };

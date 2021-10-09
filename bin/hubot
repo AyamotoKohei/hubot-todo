@@ -1,4 +1,5 @@
 #!/bin/sh
+#Windows only: CRLF => LF CHANGE
 
 set -e
 
